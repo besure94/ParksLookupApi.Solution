@@ -14,11 +14,11 @@ namespace ParksLookupApi.Models
     {
       builder.Entity<Park>()
         .HasData(
-          new Park { ParkId = 1, Name = "Crater Lake National Park", Location = "Oregon" },
-          new Park { ParkId = 2, Name = "Champoeg State Park", Location = "Oregon" },
-          new Park { ParkId = 3, Name = "Zion National Park", Location = "Utah" },
-          new Park { ParkId = 4, Name = "Arches National Park", Location = "Utah" },
-          new Park { ParkId = 5, Name = "Yosemite National Park", Location = "California" }
+          new Park { ParkId = 1, Name = "Crater Lake National Park", Type = "National", Location = "Oregon" },
+          new Park { ParkId = 2, Name = "Champoeg State Park", Type = "State", Location = "Oregon" },
+          new Park { ParkId = 3, Name = "Zion National Park", Type = "National", Location = "Utah" },
+          new Park { ParkId = 4, Name = "Arches National Park", Type = "National", Location = "Utah" },
+          new Park { ParkId = 5, Name = "Yosemite National Park", Type = "National", Location = "California" }
         );
     }
   }
