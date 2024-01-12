@@ -58,13 +58,15 @@ Within the production directory `ParksLookupApi`, run the command `dotnet watch 
 
 ### Available Endpoints
 
-**Note: this API contains two versions. Version 2 contains an additional optional query parameter for a GET request that Version 1 does not.**
+**Note: this API uses versioning, and contains two versions. Version 2 contains an additional optional query parameter for a GET request that Version 1 does not.**
+
+**Additionally, both versions of this API contain pagination. This is demonstrated by the optional "pageNumber" query string listed below in the `Optional Query String Parameters for GET Request` section.**
 
 The different versions can be located in the upper right hand of the page in Swagger. There is a dropdown menu that contains `v2` and `v1`. The application will automatically start on `v2`, as that is the most recent version. Start with testing the endpoints for `v1`, before moving on to `v2`.
 
 ### Version 1 Endpoints
 
-```
+```js
 GET https://localhost:5001/api/v1/parks
 GET https://localhost:5001/api/v1/parks/{id}
 POST https://localhost:5001/api/v1/parks
@@ -88,43 +90,43 @@ GET requests to `https://localhost:5001/api/v1/parks` can include optional query
 
 The following query will return all parks with a name property value of "Zion National Park":
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?name=zion%national%park
 ```
 
 The following query will return all parks with a type property value of "National":
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?type=national
 ```
 
 The following query will return all parks with a location property value of "Utah":
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?location=utah
 ```
 
 The following query will return all parks with a rating property value of 5:
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?rating=5
 ```
 
 The following query will return five parks from page two of the parks list:
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?pageNumber=2
 ```
 
 You can also include multiple query strings by separating them with an `&`. For example, the following query will return all state parks in Oregon with a rating of 4:
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?type=state&location=oregon&rating=4
 ```
 
 #### Additional Requirements for POST Request
 
-When making a POST request to `https://localhost:5001/api/v1/parks`, your request needs to include a "body". **Do not** create a parkId, as these are automatically generated upon creation. Example below:
+When making a POST request to `https://localhost:5001/api/v1/parks`, your request needs to include a "body". **Do not** create a `parkId`, as these are automatically generated upon creation. Example below:
 
 ```json
 {
@@ -155,7 +157,7 @@ When making a DELETE request, such as `https://localhost:5001/api/v1/parks/{id}`
 
 ### Version 2 Endpoints
 
-```
+```js
 GET https://localhost:5001/api/v2/parks
 GET https://localhost:5001/api/v2/parks/{id}
 POST https://localhost:5001/api/v2/parks
@@ -165,7 +167,7 @@ DELETE https://localhost:5001/api/v2/parks{id}
 
 Note: `{id}` is a variable and should be replaced with the id number of the park that you want to GET, PUT, or DELETE. The id will be automatically created when you POST a park.
 
-**Remember:** all of the other endpoints for `v2` of this API are exactly the same as `v1`. To view the additional requirements for POST, PUT, and DELETE requests, refer to `v1` in the "Version 1 Endpoints" section above.
+**Remember:** the only difference between `v2` and `v1`, is the optional query string parameter "random" in `v2`. To view the additional requirements for POST, PUT, and DELETE requests, simply refer to `v1` in the "Version 1 Endpoints" section above.
 
 #### Optional Query String Parameters for GET Request
 
@@ -182,43 +184,43 @@ GET requests to `https://localhost:5001/api/v2/parks` can optionally include que
 
 The following query will return all parks with a name property value of "Arches National Park":
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?name=arches%national%park
 ```
 
 The following query will return all parks with a type property value of "State":
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?type=state
 ```
 
 The following query will return all parks with a location property value of "Colorado":
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?location=colorado
 ```
 
 The following query will return all parks with a rating property value of 4:
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?rating=4
 ```
 
 The following query will return five parks from page three of the parks list:
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?pageNumber=3
 ```
 
 The following query will return a single random park:
 
-```
+```js
 GET https://localhost:5001/api/v2/parks?random=random
 ```
 
 You can also include multiple query strings by separating them with an `&`. For example, the following query will return all national parks in California with a rating of 5:
 
-```
+```js
 GET https://localhost:5001/api/v1/parks?type=national&location=california&rating=5
 ```
 
