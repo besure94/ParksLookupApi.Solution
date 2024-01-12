@@ -58,11 +58,11 @@ Within the production directory `ParksLookupApi`, run the command `dotnet watch 
 
 ### Available Endpoints
 
-**Note: this API contains two versions. Version 2 contains an additional optional query parameter that Version 1 does not.**
+**Note: this API contains two versions. Version 2 contains an additional optional query parameter for a GET request that Version 1 does not.**
 
 The different versions can be located in the upper right hand of the page in Swagger. There is a dropdown menu that contains `v2` and `v1`. The application will automatically start on `v2`, as that is the most recent version. Start with testing the endpoints for `v1`, before moving on to `v2`.
 
-#### Version 1 Endpoints
+### Version 1 Endpoints
 
 ```
 GET https://localhost:5001/api/v1/parks
@@ -85,3 +85,149 @@ GET requests to `https://localhost:5001/api/v1/parks` can include optional query
 | location  | String     | not required | Returns parks with a matching "location" property value. |
 | rating    | Number      | not required | Returns parks with a matching "rating" property value. |
 | pageNumber       | Number      | not required | Returns five parks from a specified page number. |
+
+The following query will return all parks with a name property value of "Zion National Park":
+
+```
+GET https://localhost:5001/api/v1/parks?name=zion%national%park
+```
+
+The following query will return all parks with a type property value of "National":
+
+```
+GET https://localhost:5001/api/v1/parks?type=national
+```
+
+The following query will return all parks with a location property value of "Utah":
+
+```
+GET https://localhost:5001/api/v1/parks?location=utah
+```
+
+The following query will return all parks with a rating property value of 5:
+
+```
+GET https://localhost:5001/api/v1/parks?rating=5
+```
+
+The following query will return five parks from page two of the parks list:
+
+```
+GET https://localhost:5001/api/v1/parks?pageNumber=2
+```
+
+You can also include multiple query strings by separating them with an `&`. For example, the following query will return all state parks in Oregon with a rating of 4:
+
+```
+GET https://localhost:5001/api/v1/parks?type=state&location=oregon&rating=4
+```
+
+#### Additional Requirements for POST Request
+
+When making a POST request to `https://localhost:5001/api/v1/parks`, your request needs to include a "body". **Do not** create a parkId, as these are automatically generated upon creation. Example below:
+
+```json
+{
+  "name": "Crater Lake National Park",
+  "type": "National",
+  "location": "Oregon",
+  "rating": 5
+}
+```
+
+#### Additional Requirements for PUT Request
+
+When making a PUT request, such as `https://localhost:5001/api/v1/parks/{id}`, your request needs to include a "body" that includes the park's `parkId` property. The requested id must match the `parkId` property value that exists for the specific park. Otherwise, the park will not be located and you will be unable to complete your request. Example below:
+
+```json
+{
+  "parkId": 1,
+  "name": "Arches National Park",
+  "type": "National",
+  "location": "Utah",
+  "rating": 5
+}
+```
+
+#### Additional Requirements for DELETE Request
+
+When making a DELETE request, such as `https://localhost:5001/api/v1/parks/{id}`, your request's id needs to match the `parkId` property value that exists for the specific park. If the id doesn't match the `parkId`, the park will not be located, and you will be unable to complete your request.
+
+### Version 2 Endpoints
+
+```
+GET https://localhost:5001/api/v2/parks
+GET https://localhost:5001/api/v2/parks/{id}
+POST https://localhost:5001/api/v2/parks
+PUT https://localhost:5001/api/v2/parks{id}
+DELETE https://localhost:5001/api/v2/parks{id}
+```
+
+Note: `{id}` is a variable and should be replaced with the id number of the park that you want to GET, PUT, or DELETE. The id will be automatically created when you POST a park.
+
+**Remember:** all of the other endpoints for `v2` of this API are exactly the same as `v1`. To view the additional requirements for POST, PUT, and DELETE requests, refer to `v1` in the "Version 1 Endpoints" section above.
+
+#### Optional Query String Parameters for GET Request
+
+GET requests to `https://localhost:5001/api/v2/parks` can optionally include query strings to filter reviews by different criteria. These query strings are the same as `v1`, except for one additional query string.
+
+| Parameter   | Type        |  Required    | Description |
+| ----------- | ----------- | -----------  | ----------- |
+| name   | String      | not required | Returns parks with a matching "name" property value. |
+| type        | String      | not required | Returns parks with a matching "type" value. |
+| location  | String     | not required | Returns parks with a matching "location" property value. |
+| rating    | Number      | not required | Returns parks with a matching "rating" property value. |
+| pageNumber       | Number      | not required | Returns five parks from a specified page number. |
+| random | String | not required | Returns a single random park from the list. |
+
+The following query will return all parks with a name property value of "Arches National Park":
+
+```
+GET https://localhost:5001/api/v2/parks?name=arches%national%park
+```
+
+The following query will return all parks with a type property value of "State":
+
+```
+GET https://localhost:5001/api/v2/parks?type=state
+```
+
+The following query will return all parks with a location property value of "Colorado":
+
+```
+GET https://localhost:5001/api/v2/parks?location=colorado
+```
+
+The following query will return all parks with a rating property value of 4:
+
+```
+GET https://localhost:5001/api/v2/parks?rating=4
+```
+
+The following query will return five parks from page three of the parks list:
+
+```
+GET https://localhost:5001/api/v2/parks?pageNumber=3
+```
+
+The following query will return a single random park:
+
+```
+GET https://localhost:5001/api/v2/parks?random=random
+```
+
+You can also include multiple query strings by separating them with an `&`. For example, the following query will return all national parks in California with a rating of 5:
+
+```
+GET https://localhost:5001/api/v1/parks?type=national&location=california&rating=5
+```
+
+## Known Bugs
+
+None.
+
+## License
+
+MIT
+
+Copyright(c) 2024 Brian Scherner
