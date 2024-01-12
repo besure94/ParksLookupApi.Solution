@@ -17,7 +17,7 @@ namespace ParksLookupApi.Controllers.v2
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string type, string location, int rating, int pageNumber)
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string type, string location, int rating, int pageNumber, string random)
     {
       IQueryable<Park> query = _db.Parks.AsQueryable();
 
@@ -49,7 +49,17 @@ namespace ParksLookupApi.Controllers.v2
         return paginatedParkQuery;
       }
 
-      return await query.ToListAsync();
+      List<Park> queryParks = await query.ToListAsync();
+
+      if (random == "random" || random == "Random")
+      {
+        Random randomPark = new Random();
+        int randomParkIndex = randomPark.Next(0, queryParks.Count);
+        List<Park> result = new List<Park>{queryParks[randomParkIndex]};
+        return result;
+      }
+
+      return queryParks;
     }
 
     [HttpGet("{id}")]
