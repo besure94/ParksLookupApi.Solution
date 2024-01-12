@@ -16,7 +16,7 @@ namespace ParksLookupApi.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string type, string location, int rating)
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string type, string location, int rating, int pageNumber)
     {
       IQueryable<Park> query = _db.Parks.AsQueryable();
 
@@ -38,6 +38,14 @@ namespace ParksLookupApi.Controllers
       if (rating >= 1)
       {
         query = query.Where(entry => entry.Rating == rating);
+      }
+
+      if (pageNumber > 0)
+      {
+        int pageSize = 5;
+        List<Park> paginatedParkQuery = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
+        return paginatedParkQuery;
       }
 
       return await query.ToListAsync();
