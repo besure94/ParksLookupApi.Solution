@@ -45,7 +45,6 @@ namespace ParksLookupApi.Controllers.v2
       {
         int pageSize = 5;
         List<Park> paginatedParkQuery = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
-
         return paginatedParkQuery;
       }
 

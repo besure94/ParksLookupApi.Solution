@@ -4,7 +4,6 @@ namespace ParksLookupApi.Models
 {
   public class Park
   {
-
     [Required]
     public int ParkId { get; set; }
 
