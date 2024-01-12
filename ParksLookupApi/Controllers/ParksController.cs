@@ -37,7 +37,7 @@ namespace ParksLookupApi.Controllers
 
       if (rating >= 1)
       {
-        query = query.Where(entry => entry.Rating >= rating).OrderByDescending(entry => entry.Rating);
+        query = query.Where(entry => entry.Rating == rating);
       }
 
       return await query.ToListAsync();
