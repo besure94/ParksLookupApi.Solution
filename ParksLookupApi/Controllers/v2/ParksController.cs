@@ -45,6 +45,7 @@ namespace ParksLookupApi.Controllers.v2
       {
         int pageSize = 5;
         List<Park> paginatedParkQuery = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+
         return paginatedParkQuery;
       }
 
@@ -55,6 +56,7 @@ namespace ParksLookupApi.Controllers.v2
         Random randomPark = new Random();
         int randomParkIndex = randomPark.Next(0, queryParks.Count);
         List<Park> result = new List<Park>{queryParks[randomParkIndex]};
+
         return result;
       }
 
@@ -79,6 +81,7 @@ namespace ParksLookupApi.Controllers.v2
     {
       _db.Parks.Add(park);
       await _db.SaveChangesAsync();
+
       return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
     }
 
