@@ -60,7 +60,7 @@ Within the production directory `ParksLookupApi`, run the command `dotnet watch 
 
 **Note: this API uses versioning, and contains two versions. Version 2 contains an additional optional query parameter for a GET request that Version 1 does not.**
 
-**Additionally, both versions of this API contain pagination. This is demonstrated by the optional "pageNumber" query string listed below in the `Optional Query String Parameters for GET Request` section.**
+**Additionally, both versions of this API contain pagination. This is demonstrated by the optional "pageNumber" query string listed below in the `Optional Query String Parameters for GET Request` section. This is designed to be able to return the amount of parks for a specific page. If there were thousands or millions of parks in the database, it would be very inefficient to have to sort through all of them when making GET requests.**
 
 The different versions can be located in the upper right hand of the page in Swagger. There is a dropdown menu that contains `v2` and `v1`. The application will automatically start on `v2`, as that is the most recent version. Start with testing the endpoints for `v1`, before moving on to `v2`.
 
