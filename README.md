@@ -31,7 +31,7 @@ dotnet tool install --global dotnet-ef --version 6.0.0
 1. Select the green button that says "Code", and clone this repository to your desktop.
 2. Open your terminal, and navigate to this project's production directory called `ParksLookupApi`.
 3. Inside this production directory, create a file called `appsettings.json`.
-4. In the `appsettings.json` file, enter the following code. Make sure to replace the `uid` and `pwd` values in the MySQL database connection string with your own username and password for MySQL. For the LearnHowToProgram.com lessons, always assume the `uid` is `root` and the `pwd` is `epicodus`.
+4. In the `appsettings.json` file, enter the following code. Make sure to replace the `uid` and `pwd` values in the MySQL database connection string with your own username and password for MySQL.
 
 ```json
 {
@@ -43,7 +43,7 @@ dotnet tool install --global dotnet-ef --version 6.0.0
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=parks_lookup_api;uid=root;pwd=epicodus;"
+    "DefaultConnection": "Server=localhost;Port=3306;database=parks_lookup_api;uid=[YOUR-USERNAME-HERE];pwd=[YOUR-PASSWORD-HERE];"
   }
 }
 ```
